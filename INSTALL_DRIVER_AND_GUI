@@ -1,0 +1,19 @@
+A.INSTALL DRIVER
+This software needs access to usb port so if you want grant permissions for your device in linux add the followed line as root in a file named:
+
+/etc/udev/rules.d/90-sportband.rules
+
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="11ac", ATTRS{idProduct}=="4269", SYMLINK+="sport", GROUP="adm", MODE="0666"
+
+adm is the group of your user. You can find this file in the download section.
+
+Then do:
+
+./configure  (comsport uses libusb-1.0-0.dev, libusb-dev, libusb++-dev)
+make   
+make install 
+
+You can use this software doing: comsport -h
+
+B. GUI for driver.
+It is a java software, only do: java -jar file.jar.
