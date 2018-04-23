@@ -1,1 +1,1 @@
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="11ac", ATTRS{idProduct}=="5455", SYMLINK+="sport", GROUP="aitor", MODE="0666"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="11ac", ATTRS{idProduct}=="5455", SYMLINK+="sport", GROUP="aitor", MODE="0666", , RUN+="/opt/nike"
