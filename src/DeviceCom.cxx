@@ -12,9 +12,11 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin Street, Fifth Floor Boston, MA 02110-1301,  USA
 #include <usb.h>
+#include <iostream>
 #include "DeviceCom.h"
 
 bool DeviceCom::init(void) {
+    std::cout << "DeviceCom::init INI";
 	struct usb_bus *bus;
 	int error;
 	handle = NULL;
@@ -25,7 +27,7 @@ bool DeviceCom::init(void) {
 	for (bus = usb_get_busses(); bus; bus = bus->next) {
     	struct usb_device *dev;
 		for (dev = bus->devices; dev; dev = dev->next) {
-      		if (dev->descriptor.idVendor == 0x11ac && dev->descriptor.idProduct == 0x4269) {
+      		if (dev->descriptor.idVendor == 0x11ac && dev->descriptor.idProduct == 0x5455) {
         		handle = usb_open(dev);
 				interface = dev->config->interface->altsetting->bInterfaceNumber;
 				error = usb_claim_interface(handle, interface);
@@ -43,24 +45,31 @@ bool DeviceCom::init(void) {
     	}
 	}
 	if (handle == NULL) return false;
-	return true;
+    std::cout << "DeviceCom::init END";
+    return true;
 }
 
 bool DeviceCom::read(int requestType,int request, int value, unsigned char *buffer, int size) {
+    std::cout << "DeviceCom::read INI";
 	if ( usb_control_msg(handle, requestType, request, value, 0x0, (char *)buffer, size, 1000)< 0 ) return false;
+    std::cout << "DeviceCom::read END";
 	return true;
 }
 
 int DeviceCom::readInt(int requestType,int request, int value, unsigned char *buffer, int size) {
+    std::cout << "DeviceCom::readInt INI";
 	return usb_control_msg(handle, requestType, request, value, 0x0, (char *)buffer, size, 1000);
 }
 
 bool DeviceCom::write(int requestType,int request, int value, unsigned char *buffer, int size) {
+    std::cout << "DeviceCom::write INI";
 	if ( usb_control_msg(handle, requestType, request, value, 0x0, (char *)buffer, size, 1000)< 0 ) return false;
 	return true;
 }
 
 void DeviceCom::close(void) {
+    std::cout << "DeviceCom::close INI";
 	usb_release_interface(handle, interface);
 	usb_close(handle);
+    std::cout << "DeviceCom::close END";
 }

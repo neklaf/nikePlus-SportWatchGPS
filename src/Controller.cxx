@@ -18,11 +18,13 @@
 #include "Controller.h"
 #include <time.h>
 #include <stdio.h>
+#include <iostream>
 #include <fstream>
 
 int Controller::ifPlugged(void) {
+    std::cout << "Controller::ifPlugged INI";
 	DeviceCom control;
-	if (control.init() ==true) {
+	if (control.init() == true) {
 		control.close();
 		return 1;
 	}
@@ -30,9 +32,10 @@ int Controller::ifPlugged(void) {
 }
 
 void Controller::readAllData(void) {
+    std::cout << "Controller::readAllData INI";
 	DeviceCom control;
 	BufferControl buffer;
-	if (control.init() ==true) {
+	if (control.init() == true) {
 		
 		// Milles/Kilometres
 		buffer.init(8);
@@ -88,19 +91,22 @@ void Controller::readAllData(void) {
 		
 		control.close();
 	}
+    std::cout << "Controller::readAllData END";
  }
 
 Profile Controller::getProfile(void) {
+    std::cout << "Controller::getProfile INI";
 	return profile;
 }
 
 void Controller::setTime(int hour,int minutes,int seconds,int day,int month, int year) {
+    std::cout << "Controller::setTime INI";
 	time_t rawtime;
 	struct tm * timeinfo;
 	DeviceCom control;
 	BufferControl buffer;
 	long timeLong;
-	if (control.init() ==true) {
+	if (control.init() == true) {
 		time ( &rawtime );
 	  	timeinfo = localtime ( &rawtime );
 	  	timeinfo->tm_year = year- 1900;
@@ -118,9 +124,11 @@ void Controller::setTime(int hour,int minutes,int seconds,int day,int month, int
 		buffer.freeBuffer();
 		control.close();
 	}	
+    std::cout << "Controller::setTime END";
 }
 
 void Controller::setFormatHour(bool h24) {
+    std::cout << "Controller::setFormatHour INI";
 	DeviceCom control;
 	BufferControl buffer;
 	if (control.init() ==true) {
@@ -132,9 +140,11 @@ void Controller::setFormatHour(bool h24) {
 		buffer.freeBuffer();
 		control.close();
 	}
+    std::cout << "Controller::setFormatHour END" << std::endl;
 }
 
 void Controller::setMilles(bool value) {
+    std::cout << "Controller::setMilles INI" << std::endl;
 	DeviceCom control;
 	BufferControl buffer;
 	if (control.init() ==true) {
@@ -146,9 +156,11 @@ void Controller::setMilles(bool value) {
 		buffer.freeBuffer();
 		control.close();
 	}
+    std::cout << "Controller::setMilles END" << std::endl;
 }
 
 void Controller::setWeight(int value) {
+    std::cout << "Controller::setWeight INI" << std::endl;
 	DeviceCom control;
 	BufferControl buffer;
 	float gData;
@@ -168,9 +180,11 @@ void Controller::setWeight(int value) {
 		buffer.freeBuffer();
 		control.close();
 	}
+    std::cout << "Controller::setWeight END" << std::endl;
 }
 
 void Controller::setTypeWeight(bool value) {
+    std::cout << "Controller::setTypeWeight INI" << std::endl;
 	DeviceCom control;
 	BufferControl buffer;
 	if (control.init() ==true) {
@@ -189,9 +203,11 @@ void Controller::setTypeWeight(bool value) {
 		buffer.freeBuffer();
 		control.close();
 	}
+    std::cout << "Controller::setTypeWeight END" << std::endl;
 }
 
 void Controller::setGender(bool value) {
+    std::cout << "Controller::setGender INI" << std::endl;
 	DeviceCom control;
 	BufferControl buffer;
 	if (control.init() ==true) {
@@ -209,6 +225,7 @@ void Controller::setGender(bool value) {
 		buffer.freeBuffer();
 		control.close();
 	}
+    std::cout << "Controller::setGender INI" << std::endl;
 }
 
 void Controller::setPin(std::string value) {
