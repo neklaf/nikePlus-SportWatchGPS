@@ -19,75 +19,75 @@
 #include "Profile.h"
 
 std::string Profile::convertString(char* str) {
-    std::cout << "Profile::convertString INI";
+    std::cout << "Profile::convertString INI" << std::endl;
 	int i;
 	std::string convert(str);
 	std::string out;
 	for (i=0; i < convert.length(); i++)
 		if ((convert.at(i) > 31) && (convert.at(i) < 127)) out.push_back(convert.at(i));
 
-    std::cout << "Profile::convertString END: " + out;
+    std::cout << "Profile::convertString END: " + out << std::endl;
 	
     return out;
 }
 
 int Profile::find(unsigned char *data, int size,char value) {
-    std::cout << "Profile::find INI";
+    std::cout << "Profile::find INI" << std::endl;
 	int i;
 	for (i=0;i<size;i++)
 		if (data[i] == value) return i;
-    std::cout << "Profile::find END";
+    std::cout << "Profile::find END" << std::endl;
 	return -1;
 }
 
 int Profile::findFrom(unsigned char *data, int from,int size,char value) {
-    std::cout << "Profile::findFrom INI";
+    std::cout << "Profile::findFrom INI" << std::endl;
 	int i;
 	for (i=from;i<size;i++)
 		if (data[i] == value) return i;
-    std::cout << "Profile::findFrom END";
+    std::cout << "Profile::findFrom END" << std::endl;
 	return -1;
 }
 
 void Profile::setMilles(char value) {
-    std::cout << "Profile::setMilles INI";
+    std::cout << "Profile::setMilles INI" << std::endl;
 	if (value == 0) milles=true;
 		else milles=false;
-    std::cout << "Profile::setMilles END";
+    std::cout << "Profile::setMilles END" << std::endl;
 }
 
 bool Profile::getMilles(void) {
-    std::cout << "Profile::getMilles INI";
+    std::cout << "Profile::getMilles INI" << std::endl;
 	return milles;
 }
 
 void Profile::setPounds(char value) {
-    std::cout << "Profile::setPounds INI";
+    std::cout << "Profile::setPounds INI" << std::endl;
 	if (value == 0) pounds=true;
 		else pounds=false;
-    std::cout << "Profile::setPounds END";
+    std::cout << "Profile::setPounds END" << std::endl;
 }
 
 bool Profile::getPounds(void) {
-    std::cout << "Profile::getPounds INI";
+    std::cout << "Profile::getPounds INI" << std::endl;
 	return pounds;
 }
 
 void Profile::setGender(char value) {
-    std::cout << "Profile::setGender INI";
+    std::cout << "Profile::setGender INI" << std::endl;
 	if (value == 0) gender=true;
 		else gender=false;
     
-    std::cout << "Profile::setGender END";
+    std::cout << "Profile::setGender END" << std::endl;
 }
 
 bool Profile::getGender(void) {
-    std::cout << "Profile::getGender INI";
+    std::cout << "Profile::getGender INI" << std::endl;
     return gender;
 }
 
 void Profile::setPin(unsigned char * value) {
-    std::cout << "Profile::setPin INI";
+    std::cout << "Profile::setPin INI" << std::endl;
 	std::string temp;
 	int index = 9;
 	while(value[index]!=16) {
@@ -99,15 +99,16 @@ void Profile::setPin(unsigned char * value) {
 		}
 	}
 	pin.assign(temp);
+    std::cout << "Profile::setPin END" << std::endl;
 }
 
 std::string Profile::getPin(void) {
-    std::cout << "Profile::getPin INI";
+    std::cout << "Profile::getPin INI" << std::endl;
 	return pin;
 }
 
 void Profile::setUser(unsigned char *value) {
-    std::cout << "Profile::setUser INI";
+    std::cout << "Profile::setUser INI" << std::endl;
 	std::string temp;
 	int index = findFrom(value,8,64,16);
 	if (index > -1) {
@@ -126,12 +127,12 @@ void Profile::setUser(unsigned char *value) {
 }
 
 std::string Profile::getUser(void) {
-    std::cout << "Profile::getUser INI";
+    std::cout << "Profile::getUser INI" << std::endl;
 	return user;
 }
 
 void Profile::setBirth(unsigned char * value) {
-    std::cout << "Profile::setBirth INI";
+    std::cout << "Profile::setBirth INI" << std::endl;
 	std::string temp;
 	int i;
 	int pos;
@@ -145,12 +146,12 @@ void Profile::setBirth(unsigned char * value) {
 }
 
 std::string Profile::getBirth(void) {
-    std::cout << "Profile::getBirth INI";
+    std::cout << "Profile::getBirth INI" << std::endl;
 	return birth;
 }
 
 void Profile::setLogUser(unsigned char *value) {
-    std::cout << "Profile::setLogUser INI";
+    std::cout << "Profile::setLogUser INI" << std::endl;
 	std::string temp;
 	int pos;
 	
@@ -163,22 +164,22 @@ void Profile::setLogUser(unsigned char *value) {
 		}
 		logUser.assign(temp);
 	} else logUser.assign("nouser");
-    std::cout << "Profile::setLogUser END";
+    std::cout << "Profile::setLogUser END" << std::endl;
 }
 
 std::string Profile::getLogUser(void) {
-    std::cout << "Profile::getLogUser INI";
+    std::cout << "Profile::getLogUser INI" << std::endl;
 	return logUser;
 }
 
 void Profile::setCode(int pos,bool value) {
-    std::cout << "Profile::setCode INI";
+    std::cout << "Profile::setCode INI" << std::endl;
 	codes[pos] = value;	
-    std::cout << "Profile::setCode END";
+    std::cout << "Profile::setCode END" << std::endl;
 }
 
 void Profile::setCodes(unsigned char *value) {
-    std::cout << "Profile::setCodes INI";
+    std::cout << "Profile::setCodes INI" << std::endl;
 	char temp[255];
 	int index = 3;
 	bool end = false;
@@ -200,16 +201,16 @@ void Profile::setCodes(unsigned char *value) {
 		else codes[3] = true;
 	if (tempCode.find('5') > 20) codes[4] = false;
 		else codes[4] = true;
-    std::cout << "Profile::setCodes END";
+    std::cout << "Profile::setCodes END" << std::endl;
 }
 
 bool* Profile::getCodes(void) {
-    std::cout << "Profile::getCodes INI";
+    std::cout << "Profile::getCodes INI" << std::endl;
 	return codes;
 }
 
 void Profile::setWeight(unsigned char * value) {
-    std::cout << "Profile::setWeight INI";
+    std::cout << "Profile::setWeight INI" << std::endl;
 	char convert[100];
 	int data = (value[3] << 8) | value[4];
 	float gData;
@@ -218,16 +219,16 @@ void Profile::setWeight(unsigned char * value) {
 		data = (int) atof(convert)/10;
 	} else data = data / 10;
 	weight = data;
-    std::cout << "Profile::setWeight END";
+    std::cout << "Profile::setWeight END" << std::endl;
 }
 
 int Profile::getWeight(void) {
-    std::cout << "Profile::getWeight INI";
+    std::cout << "Profile::getWeight INI" << std::endl;
 	return weight;
 }
 
 std::string Profile::getDataFormat(void) {
-    std::cout << "Profile::getDataFormat INI";
+    std::cout << "Profile::getDataFormat INI" << std::endl;
 	int i;
 	std::stringstream stream;
 
@@ -253,12 +254,12 @@ std::string Profile::getDataFormat(void) {
 			else stream << "false ";
 	stream << "\n";
 
-    std::cout << "Profile::getDataFormat INI";
+    std::cout << "Profile::getDataFormat END" << std::endl;
 	return stream.str();
 }
 
 std::string Profile::getData(void) {
-    std::cout << "Profile::getData INI";
+    std::cout << "Profile::getData INI" << std::endl;
 	int i;
 	std::stringstream stream;
 
@@ -282,6 +283,6 @@ std::string Profile::getData(void) {
 		if (codes[i] == true) stream << "true ";
 			else stream << "false ";
 
-    std::cout << "Profile::getData END";
+    std::cout << "Profile::getData END" << std::endl;
 	return stream.str();
 }

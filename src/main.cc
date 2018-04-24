@@ -61,6 +61,7 @@ void displayUsage( void ) {
 
 int main(int argc, char *argv[] )
 {
+    cout  << "main INI\n";
 	Controller controller;
 	Profile profile;
 	ConvertControl convertControl;
@@ -71,6 +72,7 @@ int main(int argc, char *argv[] )
 		cout << "no sportband found. \n";
 		exit( EXIT_FAILURE );
 	} else {
+        cout << "main controller.readAllData()\n";
 		controller.readAllData();
 	}
 	
@@ -189,6 +191,7 @@ int main(int argc, char *argv[] )
 	}
 
 	if (globalArgs.read == true) {
+        cout << "main globalArgs.read == true\n";
 		string data;
 		controller.readAllData();
 		profile = controller.getProfile();

@@ -22,7 +22,7 @@
 #include <fstream>
 
 int Controller::ifPlugged(void) {
-    std::cout << "Controller::ifPlugged INI";
+    std::cout << "Controller::ifPlugged INI" << std::endl;
 	DeviceCom control;
 	if (control.init() == true) {
 		control.close();
@@ -32,7 +32,7 @@ int Controller::ifPlugged(void) {
 }
 
 void Controller::readAllData(void) {
-    std::cout << "Controller::readAllData INI";
+    std::cout << "Controller::readAllData INI" << std::endl;
 	DeviceCom control;
 	BufferControl buffer;
 	if (control.init() == true) {
@@ -91,16 +91,16 @@ void Controller::readAllData(void) {
 		
 		control.close();
 	}
-    std::cout << "Controller::readAllData END";
+    std::cout << "Controller::readAllData END" << std::endl;
  }
 
 Profile Controller::getProfile(void) {
-    std::cout << "Controller::getProfile INI";
+    std::cout << "Controller::getProfile INI" << std::endl;
 	return profile;
 }
 
 void Controller::setTime(int hour,int minutes,int seconds,int day,int month, int year) {
-    std::cout << "Controller::setTime INI";
+    std::cout << "Controller::setTime INI" << std::endl;
 	time_t rawtime;
 	struct tm * timeinfo;
 	DeviceCom control;
@@ -124,7 +124,7 @@ void Controller::setTime(int hour,int minutes,int seconds,int day,int month, int
 		buffer.freeBuffer();
 		control.close();
 	}	
-    std::cout << "Controller::setTime END";
+    std::cout << "Controller::setTime END" << std::endl;
 }
 
 void Controller::setFormatHour(bool h24) {
@@ -225,10 +225,11 @@ void Controller::setGender(bool value) {
 		buffer.freeBuffer();
 		control.close();
 	}
-    std::cout << "Controller::setGender INI" << std::endl;
+    std::cout << "Controller::setGender END" << std::endl;
 }
 
 void Controller::setPin(std::string value) {
+    std::cout << "Controller::setPin INI" << std::endl;
 	DeviceCom control;
 	BufferControl buffer;
 	if (control.init() ==true) {
@@ -246,9 +247,11 @@ void Controller::setPin(std::string value) {
 		buffer.freeBuffer();
 		control.close();
 	}
+    std::cout << "Controller::setPin END" << std::endl;
 }
 
 void Controller::setUser(std::string value) {
+    std::cout << "Controller::setUser INI" << std::endl;
 	DeviceCom control;
 	BufferControl buffer;
 	if (control.init() ==true) {
@@ -266,9 +269,11 @@ void Controller::setUser(std::string value) {
 		buffer.freeBuffer();
 		control.close();
 	}
+    std::cout << "Controller::setUser END" << std::endl;
 }
 
 void Controller::setCodes(int value) {
+    std::cout << "Controller::setCodes INI" << std::endl;
 	DeviceCom control;
 	BufferControl buffer;
 	int pos = 4;
@@ -299,9 +304,11 @@ void Controller::setCodes(int value) {
 		buffer.freeBuffer();
 		control.close();
 	}
+    std::cout << "Controller::setCodes END" << std::endl;
 }
 
 void Controller::setBirth(std::string birth) {
+    std::cout << "Controller::setBirth INI" << std::endl;
 	DeviceCom control;
 	BufferControl buffer;
 	if (control.init() ==true) {
@@ -315,9 +322,11 @@ void Controller::setBirth(std::string birth) {
 		buffer.freeBuffer();
 		control.close();
 	}
+    std::cout << "Controller::setBirth INI" << std::endl;
 }
 
 void Controller::setLogUser(std::string logUser) {
+    std::cout << "Controller::setLogUser INI" << std::endl;
 	DeviceCom control;
 	BufferControl buffer;
 	int i;
@@ -332,9 +341,11 @@ void Controller::setLogUser(std::string logUser) {
 		buffer.freeBuffer();
 		control.close();
 	}
+    std::cout << "Controller::setLogUser END" << std::endl;
 }
 
 bool Controller::getReadTracks(std::string filename) {
+    std::cout << "Controller::getReadTracks INI" << std::endl;
 	DeviceCom control;
 	BufferControl buffer;
 	int offset;
@@ -376,6 +387,7 @@ bool Controller::getReadTracks(std::string filename) {
 }
 
 void Controller::free(void) {
+    std::cout << "Controller::free INI" << std::endl;
 	DeviceCom control;
 	BufferControl buffer;
 	int i=0;
@@ -393,4 +405,5 @@ void Controller::free(void) {
 		buffer.freeBuffer();
 		control.close();
 	}
+    std::cout << "Controller::free END" << std::endl;
 }
