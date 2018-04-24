@@ -36,7 +36,7 @@ void Controller::readAllData(void) {
 	DeviceCom control;
 	BufferControl buffer;
 	if (control.init() == true) {
-		
+    	std::cout << "Controller::readAllData setting Milles/Kilometres" << std::endl;
 		// Milles/Kilometres
 		buffer.init(8);
 		buffer.insertArrayString("9,2,132,50",0);
@@ -46,15 +46,20 @@ void Controller::readAllData(void) {
 		buffer.freeBuffer();
 
 		//Pounds/Kilogrames - Gender - Pin-Email
+    		std::cout << "Controller::readAllData setting Pounds/Kilograms" << std::endl;
 		buffer.init(8);
 		buffer.insertArrayString("9,4,82,52",0);
 		control.write(0x21,0x9,0x209,buffer.getBuffer(),0x8);
 		buffer.freeBuffer();
 		buffer.init(64);
 		control.read(0xa1,0x1,0x104,buffer.getBuffer(),0x40);
+    		std::cout << "Controller::readAllData setting Pounds-> " << buffer.getBuffer()[6] << std::endl;
 		profile.setPounds(buffer.getBuffer()[6]);
+    		std::cout << "Controller::readAllData setting Gender-> " << buffer.getBuffer()[7] << std::endl;
 		profile.setGender(buffer.getBuffer()[7]);
+    		std::cout << "Controller::readAllData setting Pin-> " << buffer.getBuffer() << std::endl;
 		profile.setPin(buffer.getBuffer());
+    		std::cout << "Controller::readAllData setting User-> " << buffer.getBuffer() << std::endl;
 		profile.setUser(buffer.getBuffer());
 		buffer.freeBuffer();
 
@@ -65,7 +70,9 @@ void Controller::readAllData(void) {
 		buffer.freeBuffer();
 		buffer.init(64);
 		control.read(0xa1,0x1,0x104,buffer.getBuffer(),0x40);
+    		std::cout << "Controller::readAllData setting birth-> " << buffer.getBuffer() << std::endl;
 		profile.setBirth(buffer.getBuffer());
+    		std::cout << "Controller::readAllData setting log user-> " << buffer.getBuffer() << std::endl;
 		profile.setLogUser(buffer.getBuffer());
 		buffer.freeBuffer();
 		
@@ -76,6 +83,7 @@ void Controller::readAllData(void) {
 		buffer.freeBuffer();
 		buffer.init(16);
 		control.read(0xa1,0x1,0x102,buffer.getBuffer(),0x10);
+    		std::cout << "Controller::readAllData setting codes-> " << buffer.getBuffer() << std::endl;
 		profile.setCodes(buffer.getBuffer());
 		buffer.freeBuffer();
 
@@ -86,6 +94,7 @@ void Controller::readAllData(void) {
 		buffer.freeBuffer();
 		buffer.init(8);
 		control.read(0xa1,0x1,0x101,buffer.getBuffer(),0x8);
+    		std::cout << "Controller::readAllData setting weight-> " << buffer.getBuffer() << std::endl;
 		profile.setWeight(buffer.getBuffer());
 		buffer.freeBuffer();
 		

@@ -180,16 +180,19 @@ void Profile::setCode(int pos,bool value) {
 
 void Profile::setCodes(unsigned char *value) {
     std::cout << "Profile::setCodes INI" << std::endl;
+    std::cout << "Profile::setCodes params: value-> " << std::endl;
 	char temp[255];
 	int index = 3;
 	bool end = false;
 	std::string tempCode;
 	while ((end == false) || (value[index] != 0)) {
+		//std::cout << "Profile::setCodes value[index]-> " + value[index] << std::endl;
 		if (value[index] == 3) end=true;
 		temp[index-3] = value[index]+48;
 		index++;
 	}
 	temp[index-3] = '\0';
+	std::cout << "Profile::setCodes temp-> " << temp << std::endl;
 	tempCode.assign(temp);
 	if (tempCode.find('0') > 20) codes[0] = false;
 		else codes[0] = true;

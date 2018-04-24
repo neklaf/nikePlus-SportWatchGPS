@@ -16,7 +16,7 @@
 #include "DeviceCom.h"
 
 bool DeviceCom::init(void) {
-    std::cout << "DeviceCom::init INI";
+    std::cout << "DeviceCom::init INI" << std::endl;
 	struct usb_bus *bus;
 	int error;
 	handle = NULL;
@@ -45,31 +45,31 @@ bool DeviceCom::init(void) {
     	}
 	}
 	if (handle == NULL) return false;
-    std::cout << "DeviceCom::init END";
+    std::cout << "DeviceCom::init END" << std::endl;
     return true;
 }
 
 bool DeviceCom::read(int requestType,int request, int value, unsigned char *buffer, int size) {
-    std::cout << "DeviceCom::read INI";
+    std::cout << "DeviceCom::read INI" << std::endl;
 	if ( usb_control_msg(handle, requestType, request, value, 0x0, (char *)buffer, size, 1000)< 0 ) return false;
-    std::cout << "DeviceCom::read END";
+    std::cout << "DeviceCom::read END" << std::endl;
 	return true;
 }
 
 int DeviceCom::readInt(int requestType,int request, int value, unsigned char *buffer, int size) {
-    std::cout << "DeviceCom::readInt INI";
+    std::cout << "DeviceCom::readInt INI" << std::endl;
 	return usb_control_msg(handle, requestType, request, value, 0x0, (char *)buffer, size, 1000);
 }
 
 bool DeviceCom::write(int requestType,int request, int value, unsigned char *buffer, int size) {
-    std::cout << "DeviceCom::write INI";
+    std::cout << "DeviceCom::write INI" << std::endl;
 	if ( usb_control_msg(handle, requestType, request, value, 0x0, (char *)buffer, size, 1000)< 0 ) return false;
 	return true;
 }
 
 void DeviceCom::close(void) {
-    std::cout << "DeviceCom::close INI";
+    std::cout << "DeviceCom::close INI" << std::endl;
 	usb_release_interface(handle, interface);
 	usb_close(handle);
-    std::cout << "DeviceCom::close END";
+    std::cout << "DeviceCom::close END" << std::endl;
 }
